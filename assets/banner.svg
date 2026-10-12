@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="50%" stop-color="#121a30"/>
+      <stop offset="100%" stop-color="#080c17"/>
+    </linearGradient>
+
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Node Glow Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" stroke-width="0.75" stroke-opacity="0.08"/>
+      <circle cx="40" cy="40" r="1" fill="#818cf8" fill-opacity="0.25"/>
+    </pattern>
+
+    <style>
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -80;
+        }
+      }
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 0.3;
+          transform: scale(0.98);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.02);
+        }
+      }
+      @keyframes floatSlow {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      @keyframes floatFast {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+      @keyframes orbitGlow {
+        0% { stop-color: #38bdf8; }
+        50% { stop-color: #ec4899; }
+        100% { stop-color: #38bdf8; }
+      }
+      .animated-flow {
+        stroke-dasharray: 8, 8;
+        animation: dash 2.5s linear infinite;
+      }
+      .animated-pulse-bg {
+        animation: pulse 4s ease-in-out infinite;
+        transform-origin: center;
+      }
+      .node-float-1 {
+        animation: floatSlow 5s ease-in-out infinite;
+        transform-origin: center;
+      }
+      .node-float-2 {
+        animation: floatFast 4s ease-in-out infinite;
+        transform-origin: center;
+      }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="380" rx="16" fill="url(#bg-grad)"/>
+  <rect width="1200" height="380" rx="16" fill="url(#grid)"/>
+
+  <!-- Ambient Glowing Blobs -->
+  <circle cx="150" cy="190" r="160" fill="url(#glow-grad)" class="animated-pulse-bg" />
+  <circle cx="1050" cy="190" r="180" fill="url(#glow-grad)" class="animated-pulse-bg" />
+  <circle cx="600" cy="60" r="120" fill="#6366f1" fill-opacity="0.1" filter="url(#glow)"/>
+
+  <!-- Dynamic Connection Paths & Circuits in Background -->
+  <g opacity="0.6">
+    <!-- Left to Center Integration Pipelines -->
+    <path d="M 80,100 C 180,100 220,180 340,180" fill="none" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M 80,100 C 180,100 220,180 340,180" fill="none" stroke="#38bdf8" stroke-width="2.5" class="animated-flow"/>
+    
+    <path d="M 90,280 C 190,280 230,200 340,200" fill="none" stroke="#818cf8" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M 90,280 C 190,280 230,200 340,200" fill="none" stroke="#818cf8" stroke-width="2.5" class="animated-flow"/>
+
+    <!-- Right to Center Integration Pipelines -->
+    <path d="M 1120,100 C 1020,100 980,180 860,180" fill="none" stroke="#c084fc" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M 1120,100 C 1020,100 980,180 860,180" fill="none" stroke="#c084fc" stroke-width="2.5" class="animated-flow"/>
+
+    <path d="M 1110,280 C 1010,280 970,200 860,200" fill="none" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M 1110,280 C 1010,280 970,200 860,200" fill="none" stroke="#38bdf8" stroke-width="2.5" class="animated-flow"/>
+  </g>
+
+  <!-- Side Floating Nodes (Representing Cloud SaaS & On-Premise Endpoints) -->
+  <!-- Left Side: Cloud & SaaS Endpoints -->
+  <g class="node-float-1">
+    <!-- Cloud Node 1 -->
+    <rect x="35" y="70" width="130" height="48" rx="24" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="58" cy="94" r="8" fill="#38bdf8"/>
+    <text x="76" y="99" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">Cloud SaaS</text>
+  </g>
+
+  <g class="node-float-2">
+    <!-- API Gateway Node -->
+    <rect x="45" y="250" width="135" height="48" rx="24" fill="#1e293b" stroke="#818cf8" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="68" cy="274" r="8" fill="#818cf8"/>
+    <text x="86" y="279" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">APIs &amp; Events</text>
+  </g>
+
+  <!-- Right Side: On-Premise & Data Endpoints -->
+  <g class="node-float-2">
+    <!-- On-Prem ERP Node -->
+    <rect x="1030" y="70" width="135" height="48" rx="24" fill="#1e293b" stroke="#c084fc" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="1054" cy="94" r="8" fill="#c084fc"/>
+    <text x="1072" y="99" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">On-Premises</text>
+  </g>
+
+  <g class="node-float-1">
+    <!-- Data Lake Node -->
+    <rect x="1020" y="250" width="145" height="48" rx="24" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="1044" cy="274" r="8" fill="#38bdf8"/>
+    <text x="1062" y="279" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">Data Warehouses</text>
+  </g>
+
+  <!-- Center Card (Foreground - crisp, high-contrast, perfectly visible) -->
+  <g filter="url(#shadow)">
+    <!-- Sleek backdrop behind text for 100% legibility -->
+    <rect x="200" y="45" width="800" height="290" rx="20" fill="#0f172a" fill-opacity="0.88" stroke="#334155" stroke-width="1.5"/>
+    <rect x="200" y="45" width="800" height="290" rx="20" fill="none" stroke="url(#accent-grad)" stroke-width="1.5" stroke-opacity="0.6"/>
+
+    <!-- Category Pill Tag -->
+    <g transform="translate(485, 75)">
+      <rect x="0" y="0" width="230" height="30" rx="15" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+      <circle cx="15" cy="15" r="4" fill="#38bdf8"/>
+      <text x="28" y="20" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">HYBRID INTEGRATION (iPaaS)</text>
+    </g>
+
+    <!-- Main Title (Crisp, High Contrast, Foreground) -->
+    <text x="600" y="155" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.5">
+      Awesome Hybrid Integration Platform
+    </text>
+
+    <!-- Secondary Accent in Title -->
+    <text x="600" y="198" text-anchor="middle" fill="url(#accent-grad)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.2">
+      Enterprise iPaaS &amp; Open-Source Engines
+    </text>
+
+    <!-- Subtitle -->
+    <text x="600" y="240" text-anchor="middle" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="400">
+      Curated directory of SaaS suites, open-source ESBs, workflow automation, and hybrid connectors
+    </text>
+
+    <!-- Feature Pills in Foreground -->
+    <g transform="translate(260, 275)">
+      <!-- Pill 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="125" height="28" rx="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+        <text x="62.5" y="18" text-anchor="middle" fill="#bae6fd" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500">⚡ API-Led</text>
+      </g>
+      <!-- Pill 2 -->
+      <g transform="translate(138, 0)">
+        <rect width="135" height="28" rx="14" fill="#1e293b" stroke="#818cf8" stroke-width="1"/>
+        <text x="67.5" y="18" text-anchor="middle" fill="#c7d2fe" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500">🔄 Hybrid Cloud</text>
+      </g>
+      <!-- Pill 3 -->
+      <g transform="translate(286, 0)">
+        <rect width="135" height="28" rx="14" fill="#1e293b" stroke="#c084fc" stroke-width="1"/>
+        <text x="67.5" y="18" text-anchor="middle" fill="#f5d0fe" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500">🛠️ Open Source</text>
+      </g>
+      <!-- Pill 4 -->
+      <g transform="translate(434, 0)">
+        <rect width="125" height="28" rx="14" fill="#1e293b" stroke="#34d399" stroke-width="1"/>
+        <text x="62.5" y="18" text-anchor="middle" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500">📊 ETL &amp; ELT</text>
+      </g>
+      <!-- Pill 5 -->
+      <g transform="translate(572, 0)">
+        <rect width="110" height="28" rx="14" fill="#1e293b" stroke="#f472b6" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#fbcfe8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500">🚀 Orchestration</text>
+      </g>
+    </g>
+  </g>
+</svg>
