@@ -279,7 +279,7 @@ We welcome community contributions, architectural case studies, and tool additio
 1. Fork this repository: `git checkout -b feature/add-new-tool`.
 2. Ensure entries conform to formatting:
    - For **SaaS**: Include official link, company valuation/revenue, starting pricing tier, and exact free tier/trial limits.
-   - For **Open-Source**: Provide the GitHub link, official social stargazers badge (`style=social&label=Stars&color=white`), and sort properly by star count.
+   - For **Open-Source**: Provide the GitHub link, official social stargazers badge (`style=social&label=Stars&color=white`), and sort properly by Stars_Count.
 3. Open a Pull Request with a clear rationale and verification links.
 
 ---
